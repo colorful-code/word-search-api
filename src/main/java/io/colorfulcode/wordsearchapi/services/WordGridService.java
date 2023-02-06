@@ -1,5 +1,6 @@
 package io.colorfulcode.wordsearchapi.services;
 
+import io.colorfulcode.wordsearchapi.domain.Grid;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -31,8 +32,9 @@ public class WordGridService {
 
     }
 
-    public char[][] generateGrid(int gridSize, List<String> words) {
+    public Grid generateGrid(int gridSize, List<String> words) {
         List<Coordinate> coordinates = new ArrayList<>();
+        List<String> omittedWords = new ArrayList<>();
         char[][] contents = new char[gridSize][gridSize];
         for(int i = 0; i < gridSize; i++) {
             for(int j = 0; j < gridSize; j++) {
@@ -43,11 +45,13 @@ public class WordGridService {
 
         for(String word: words) {
             Collections.shuffle(coordinates);
+            boolean addedToGrid = false;
             for(Coordinate coordinate : coordinates) {
                 int x = coordinate.x;
                 int y = coordinate.y;
                 Direction selectedDirection = getArbitraryValidDirection(contents, word, coordinate);
                 if(selectedDirection != null) {
+                    addedToGrid = true;
                     switch (selectedDirection) {
                         case HORIZONTAL -> {
                             for(char c : word.toCharArray()) {
@@ -83,19 +87,12 @@ public class WordGridService {
                     break;
                 }
             }
+            if (!addedToGrid) {
+                omittedWords.add(word);
+            }
         }
         fillWithRandomLetters(contents);
-        return contents;
-    }
-
-    public void displayGrid(char[][] contents) {
-        int gridSize = contents.length;
-        for(int i = 0; i < gridSize; i++) {
-            for(int j = 0; j < gridSize; j++) {
-                System.out.print(contents[i][j]);
-            }
-            System.out.println("");
-        }
+        return new Grid(words, contents, gridSize, omittedWords);
     }
 
     //Fills any field not taken by a word with a random uppercase letter.
