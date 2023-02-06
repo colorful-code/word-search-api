@@ -4,3 +4,4 @@ io\colorfulcode\wordsearchapi\WordsearchApiApplication.class
 io\colorfulcode\wordsearchapi\services\WordGridService$Coordinate.class
 io\colorfulcode\wordsearchapi\controllers\WordSearchController.class
 io\colorfulcode\wordsearchapi\services\WordGridService.class
+io\colorfulcode\wordsearchapi\domain\Grid.class
