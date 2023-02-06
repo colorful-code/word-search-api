@@ -16,7 +16,7 @@ public class WordSearchController {
     @Autowired
     WordGridService wordGridService;
 
-    @CrossOrigin(origins="*")
+    @CrossOrigin
     @GetMapping
     public List<String> createWordGrid(@RequestParam int gridSize, @RequestParam List<String> words) throws JsonProcessingException {
         Grid grid = wordGridService.generateGrid(gridSize, words);
