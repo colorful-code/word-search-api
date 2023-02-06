@@ -10,14 +10,15 @@ import java.util.Arrays;
 import java.util.List;
 
 @RequestMapping("/wordgrid")
+@CrossOrigin(origins="https://colorful-code.github.io/word-search-frontend/")
 @RestController()
 public class WordSearchController {
 
     @Autowired
     WordGridService wordGridService;
 
-    @GetMapping
     @CrossOrigin(origins="https://colorful-code.github.io")
+    @GetMapping
     public List<String> createWordGrid(@RequestParam int gridSize, @RequestParam List<String> words) throws JsonProcessingException {
         Grid grid = wordGridService.generateGrid(gridSize, words);
         String gridAsString = "";
