@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: io.colorfulcode.wordsearchapi.WordsearchApiApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.226 s - in io.colorfulcode.wordsearchapi.WordsearchApiApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.067 s - in io.colorfulcode.wordsearchapi.WordsearchApiApplicationTests
